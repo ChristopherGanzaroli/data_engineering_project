@@ -2,6 +2,7 @@ from kafka import KafkaConsumer
 from kafka.errors import KafkaError
 import json
 
+
 topic = "odata_ve_paris"
 kafka_bootstrap_servers = ['localhost:9092']
 if __name__ == "__main__" :
