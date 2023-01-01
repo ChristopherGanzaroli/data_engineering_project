@@ -18,26 +18,18 @@ def get_weaher_detail() :
             # print(statut)
             cp = elt['fields']['code_insee_commune']
             # print(cp)
-            lat_long = elt['fields']['coordonneesxy']
+            #lat_long = elt['fields']['coordonneesxy']
             # print(lat_long)
             lat = elt['fields']['coordonneesxy'][0]
             # print(lat)
             long = elt['fields']['coordonneesxy'][1]
             # print(long)
             id_pdc = elt['fields']['id_pdc']
-
-            now = datetime.now()
             # print(id_pdc)
 
-            json_message = {'adresse_station' : adress,
-                            'arrondissement' :arrondissement,
-                            "status" : statut,
-                            "cp" :cp,
-                            "lat_long" : lat_long,
-                            "lat": lat,
-                            "long":long,
-                            "id_pdc" : id_pdc
-                            }
+            now = datetime.now()
+
+
 
         return {
                 'time' : now.strftime("%Y-%m-%d %H:%M:%S"),
@@ -45,20 +37,11 @@ def get_weaher_detail() :
                 'arrondissement' :arrondissement,
                 "status" : statut,
                 "cp" :cp,
-                "lat_long" : lat_long,
+                #"lat_long" : ''.join(map(str,lat_long)),
                 "lat": lat,
                 "long":long,
                 "id_pdc" : id_pdc
                 }
 
-# {'adresse_station' : adress,
-#  'arrondissement' :arrondissement,
-#  "status" : statut,
-#  "cp" :cp,
-#  "lat_long" : lat_long,
-#  "lat": lat,
-#  "long":long,
-#  "id_pdc" : id_pdc
-#  }
 if __name__ == "__main__":
     print(get_weaher_detail())

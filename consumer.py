@@ -6,7 +6,7 @@ import sqlite3
 topic = "odata_ve_paris"
 kafka_bootstrap_servers = ['localhost:9092']
 
-con = sqlite3.connect("database/paris_ve_db.db")
+con = sqlite3.connect("database/paris_ve.db")
 
 #con.close()
 
@@ -27,10 +27,9 @@ if __name__ == "__main__" :
 
         cur = con.cursor()
 
-        sql = "INSERT INTO paris_station_act (time, adress, district, status, post_code, lat_long, lat, long, id_pdc) VALUES (?,?,?,?,?,?,?,?,?)"
-        val = (data['time'],data['adresse_station'],data['arrondissement'],data['status'],data['cp'],data['lat_long'],data['lat'], data['long'], data['id_pdc'])
+        #sql = "INSERT INTO paris_station_act (time, adress, district, status, post_code, lat_long, lat, long, id_pdc) VALUES (?,?,?,?,?,?,?,?)"
+        val = (data['time'], data['adresse_station'], data['arrondissement'], data['status'], data['cp'], data['lat'], data['long'], data['id_pdc'])
+        cur.execute("INSERT INTO paris_station_act (time, adress, district, status, post_code, lat, long, id_pdc) VALUES (?,?,?,?,?,?,?,?)",val)
 
-
-        cur.execute("INSERT INTO paris_station_act (time, adress, district, status, post_code, lat_long, lat, long, id_pdc) VALUES (?,?,?,?,?,?,?,?,?)",val)
         con.commit()
 
