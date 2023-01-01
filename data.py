@@ -1,6 +1,6 @@
 import requests
 import json
-
+from datetime import datetime
 
 url = "https://opendata.paris.fr/api/records/1.0/search/?dataset=belib-points-de-recharge-pour-vehicules-electriques-disponibilite-temps-reel&q=&rows=999&facet=statut_pdc&facet=last_updated&facet=arrondissement"
 odata_paris_api_endpoint = url
@@ -25,6 +25,8 @@ def get_weaher_detail() :
             long = elt['fields']['coordonneesxy'][1]
             # print(long)
             id_pdc = elt['fields']['id_pdc']
+
+            now = datetime.now()
             # print(id_pdc)
 
             json_message = {'adresse_station' : adress,
@@ -37,7 +39,9 @@ def get_weaher_detail() :
                             "id_pdc" : id_pdc
                             }
 
-        return {'adresse_station' : adress,
+        return {
+                'time' : now.strftime("%Y-%m-%d %H:%M:%S"),
+                'adresse_station' : adress,
                 'arrondissement' :arrondissement,
                 "status" : statut,
                 "cp" :cp,

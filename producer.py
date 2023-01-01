@@ -21,24 +21,24 @@ producer = KafkaProducer(bootstrap_servers= kafka_bootstrap_servers,
                          api_version= (0,10,1)
                          )
 l = ["start"]
-def sent_msg() :
+def send_msg() :
 
 
     if get_weaher_detail()["id_pdc"] != l[-1] :
         producer.send(topic,get_weaher_detail())
         l.append(get_weaher_detail()["id_pdc"])
 
-        print("sent")
+        print("msg sent")
         print(l)
         print(get_weaher_detail())
 
     else :
-        print("not sent")
+        print("msg not send")
         print(l)
 
 
 if __name__ == "__main__" :
     while True :
         #producer.send(topic,get_weaher_detail())
-        sent_msg()
+        send_msg()
         time.sleep(1)
