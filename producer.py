@@ -41,4 +41,4 @@ if __name__ == "__main__" :
     while True :
         #producer.send(topic,get_weaher_detail())
         send_msg()
-        time.sleep(1)
+        time.sleep(2)
