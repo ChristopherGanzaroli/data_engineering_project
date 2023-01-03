@@ -4,10 +4,9 @@ import json
 import sqlite3
 topic = "odata_ve_paris"
 kafka_bootstrap_servers = ['localhost:9092']
+from database.sqlite import SQL_con
 
-#con = sqlite3.connect("database/paris_ve.db",timeout=1)
 
-#con.close()
 
 
 
@@ -27,15 +26,19 @@ if __name__ == "__main__" :
             for msg in consumer:
                 #print(json.loads(msg.value))
                 data = json.loads(msg.value)
-                print(data)
+                val = (data['time'], data['adresse_station'], data['arrondissement'], data['status'], data['cp'], data['lat'], data['long'], data['id_pdc'])
+                SQL_con(val)
 
-            con = sqlite3.connect("database/paris_ve.db",timeout=10)
-            cur = con.cursor()
                 #sql = "INSERT INTO paris_station_act (time, adress, district, status, post_code, lat_long, lat, long, id_pdc) VALUES (?,?,?,?,?,?,?,?)"
-            val = (data['time'], data['adresse_station'], data['arrondissement'], data['status'], data['cp'], data['lat'], data['long'], data['id_pdc'])
-            cur.execute("INSERT INTO paris_station_act (time, adress, district, status, post_code, lat, long, id_pdc) VALUES (?,?,?,?,?,?,?,?)",val).fetchall()
+                # con = sqlite3.connect("database/paris_ve.db",timeout=1)
+                # cur = con.cursor()
+                # cur.execute("INSERT INTO paris_station_act (time, adress, district, status, post_code, lat, long, id_pdc) VALUES (?,?,?,?,?,?,?,?)",val)#.fetchall()
+                # con.commit()
+                # cur.execute(("SELECT * FROM paris_station_act"))
+                # res = cur.fetchall()
+                # print(res)
 
-            con.commit()
-            con.close()
+
+                #con.close()
 
 
