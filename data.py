@@ -2,7 +2,7 @@ import requests
 import json
 from datetime import datetime
 
-url = "https://opendata.paris.fr/api/records/1.0/search/?dataset=belib-points-de-recharge-pour-vehicules-electriques-disponibilite-temps-reel&q=&rows=999&facet=statut_pdc&facet=last_updated&facet=arrondissement"
+url = "https://opendata.paris.fr/api/records/1.0/search/?dataset=belib-points-de-recharge-pour-vehicules-electriques-disponibilite-temps-reel&q=&rows=-1&facet=statut_pdc&facet=last_updated&facet=arrondissement"
 odata_paris_api_endpoint = url
 
 def get_weaher_detail() :
@@ -28,11 +28,13 @@ def get_weaher_detail() :
             # print(id_pdc)
 
             now = datetime.now()
+            time_for_duplicate_rows = ("%4d:%02d:%02d:%02d"%(now.year,now.month, now.day,now.minute))[:-1]
 
 
 
         return {
                 'time' : now.strftime("%Y-%m-%d %H:%M:%S"),
+                'time_for_duplicate_rows' : time_for_duplicate_rows ,
                 'adresse_station' : adress,
                 'arrondissement' :arrondissement,
                 "status" : statut,
