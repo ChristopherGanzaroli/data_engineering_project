@@ -28,7 +28,7 @@ def get_weaher_detail() :
             # print(id_pdc)
 
             now = datetime.now()
-            time_for_duplicate_rows = ("%4d:%02d:%02d:%02d"%(now.year,now.month, now.day,now.minute))[:-1]
+            time_for_duplicate_rows = ("%4d:%02d:%02d:%02d:%02d"%(now.year,now.month, now.day,now.hour,now.minute))[:-1]
 
 
 
